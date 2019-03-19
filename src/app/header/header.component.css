@@ -1,0 +1,13 @@
+.main-header {
+    background: #262980;
+    padding: 12px 0;
+}
+.main-header .main-title{
+    text-transform: uppercase;
+    color: white;
+}
+.logo-spec {
+    width: 40px;
+    float: left;
+    margin: -6px 0px 0px 10px;
+}

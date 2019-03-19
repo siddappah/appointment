@@ -1,0 +1,166 @@
+
+.justify-button-space {
+    justify-content: space-evenly;
+}
+
+.four {
+     width: 100%;
+}
+
+.col {
+  display: block;
+  float:left;
+  margin: 1% 0 1% 1.6%;
+}
+
+.col:first-of-type { margin-left: 0; }
+
+.cf:before,
+.cf:after {
+    content: " ";
+    display: table;
+}
+
+.cf:after {
+    clear: both;
+}
+
+.timeslots-wrapper .plan input{
+	display: none;
+}
+
+.timeslots-wrapper .unavailable{
+    position: relative;
+    color: #fff;
+    background-color: #aaa;
+    font-size: 14px;
+    text-align: center;
+    /* display: block; */
+    cursor: pointer;
+    border: 1px solid transparent;
+    box-sizing: border-box;
+    padding: 3px 10px;
+}
+.timeslots-wrapper label{
+    position: relative;
+    color: #aaa;
+    background-color: #fff;
+    font-size: 14px;
+    text-align: center;
+    /* display: block; */
+    cursor: pointer;
+    border: 1px solid gray;
+    box-sizing: border-box;
+    padding: 2px 10px;
+    margin-top: 0;
+}
+
+.timeslots-wrapper .plan input:checked + label{
+	border: 1px solid #333;
+    background-color: #2fcc71;
+    color:#fff;
+}
+
+.timeslots-wrapper .plan input:checked + label:after{
+	content: "\2713";
+	width: 22px;
+	height: 22px;
+	line-height: 22px;
+	border-radius: 100%;
+	border: 1px solid #333;
+    background-color: #2fcc71;
+    color:#fff;
+	z-index: 999;
+	position: absolute;
+	top: -10px;
+	right: -8px;
+}
+
+.available-slot {
+    border: 1px solid #a7a9ac;
+    height: 17px;
+    background-color: #fff;
+    margin-right: 10px;
+    width: 34px;
+    float: left;
+}
+
+.legend-label {
+    float: left;
+    text-transform: capitalize;
+    line-height: 17px;
+    font-weight: 300;
+}
+
+.unavailable-slot {
+    height: 17px;
+    background-color: #aaa;
+    margin-right: 10px;
+    width: 34px;
+    float: left;
+}
+
+/* Break style start */
+.strike {
+    display: block;
+    text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 17px;
+}
+
+.strike > span {
+    position: relative;
+    display: inline-block;
+}
+
+.strike > span:before,
+.strike > span:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 9999px;
+    /* Here is the modification */
+    border-top: 4px double red;
+}
+
+.strike > span:before {
+    right: 100%;
+    margin-right: 10px;
+}
+
+.strike > span:after {
+    left: 100%;
+    margin-left: 10px;
+}
+/* Break style start */
+
+/* Date selection next and previos style start */
+.date-wrapper .nav-btn {
+    /* text-decoration: none;
+    display: inline-block;
+    padding: 4px 20px; */
+  }
+  
+  .date-wrapper .nav-btn:hover:enabled {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .date-wrapper .previous, .date-wrapper .next {
+    /* background-color: #f1f1f1; */
+    color: black;
+  }
+  .date-wrapper .date-selection {
+    background: #262980;
+    color: #fff;
+    padding: 8px 42px;
+  }
+  /* Date selection next and previos style start */
+
+  .sunday-off-message {
+    padding: 10px 0;
+    text-align: center;
+    color: #920613;
+  }

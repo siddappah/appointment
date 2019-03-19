@@ -1,0 +1,39 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+html *
+{  
+   font-family: 'Source Sans Pro', sans-serif;
+   font-weight: 400;
+}
+/* body{
+  font-family: 'Source Sans Pro', Arial,sans-serif;
+  font-weight: 400;
+} */
+mat-form-field{
+  width: 100%;
+}
+.mat-tab-label,.mat-tab-link {
+  font-size: 16px !important;
+} 
+.common-padd {
+    padding: 100px 0;
+  }
+  table.mat-table {
+    width: 100%;
+}
+button:focus {
+  outline: none !important;
+}
+legend {
+  font-size: 20px !important;
+}
+.display-top{
+  z-index: 1000;
+}
+.cdk-global-overlay-wrapper, .cdk-overlay-container { 
+  z-index: 9999!important; 
+}
+.outline-border {
+  border: 1px solid #aaa;
+} 

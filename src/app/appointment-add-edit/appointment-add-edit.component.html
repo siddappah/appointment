@@ -1,0 +1,535 @@
+<div class="modal-header">
+  <!-- <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '0' }"></ngx-loading> -->
+  <h4 class="modal-title pull-left">Add New Appointment</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form class="col-md-12" (ngSubmit)="onSubmit()" #appointmentForm="ngForm">
+
+    <div class="form-row">
+      <div class="col-md-6">
+
+        <!-- Date selection next and previos start-->
+        <div class="date-wrapper d-inline-block mb-3">
+          <button type="button" mat-raised-button class="nav-btn previous mr-3" [disabled]="btnStatusCheck"
+            (click)="previousDate(currentFormattedDate)" title="Previous date">&laquo;</button>
+          <!-- <a mat-button class="previous mr-4" (click)="previousDate()" [disabled]="false">&laquo;</a> -->
+          <span class="date-selection">{{ currentFormattedDate | date:'mediumDate' }} </span>
+          <!-- <a class="next ml-4" (click)="nextDate()">&raquo;</a> -->
+          <button type="button" mat-raised-button class="nav-btn next ml-3" (click)="nextDate(currentFormattedDate)"
+            title="Next date">&raquo;</button>
+        </div>
+
+        <!-- Date selection next and previos end-->
+        <!-- Appointment slot start -->
+        <div class="timeslots-wrapper cf">
+          <section class="plan cf d-inline-block shadow outline-border">
+
+            <!-- First set of appointment time -->
+            <div class="d-flex justify-content-start">
+              <div class="p-1">
+                <span *ngIf="timeSlots.includes(1); else needToBook1">
+                  <span class="unavailable">10:00 AM</span>
+                </span>
+                <ng-template #needToBook1>
+                  <input class="available" type="radio" name="appointmentTime" id="1000am" value="10:00 AM">
+                  <label class="four col" for="1000am">10:00 AM</label>
+                </ng-template>
+              </div>
+
+              <div class="p-1">
+                <span *ngIf="timeSlots.includes(2); else needToBook2">
+                  <span class="unavailable">10:15 AM</span>
+                </span>
+                <ng-template #needToBook2>
+                  <input class="available" type="radio" name="appointmentTime" id="1015am" value="10:15 AM">
+                  <label class="four col" for="1015am">10:15 AM</label>
+                </ng-template>
+              </div>
+
+              <div class="p-1">
+                <span *ngIf="timeSlots.includes(3); else needToBook3">
+                  <span class="unavailable">10:30 AM</span>
+                </span>
+                <ng-template #needToBook3>
+                  <input class="available" type="radio" name="appointmentTime" id="1030am" value="10:30 AM">
+                  <label class="four col" for="1030am">10:30 AM</label>
+                </ng-template>
+              </div>
+
+              <div class="p-1">
+                <span *ngIf="timeSlots.includes(4); else needToBook4">
+                  <span class="unavailable">10:45 AM</span>
+                </span>
+                <ng-template #needToBook4>
+                  <input class="available" type="radio" name="appointmentTime" id="1045am" value="10:45 AM">
+                  <label class="four col" for="1045am">10:45 AM</label>
+                </ng-template>
+              </div>
+            </div>
+
+            <!-- Second set of appointment time -->
+            <div class="d-flex justify-content-start">
+              <div class="p-1">
+                <span *ngIf="timeSlots.includes(5); else needToBook5">
+                  <span class="unavailable">11:00 AM</span>
+                </span>
+                <ng-template #needToBook5>
+                  <input class="available" type="radio" name="appointmentTime" id="1100am" value="11:00 AM">
+                  <label class="four col" for="1100am">11:00 AM</label>
+                </ng-template>
+              </div>
+
+              <div class="p-1">
+                <span *ngIf="timeSlots.includes(6); else needToBook6">
+                  <span class="unavailable">11:15 AM</span>
+                </span>
+                <ng-template #needToBook6>
+                  <input class="available" type="radio" name="appointmentTime" id="1115am" value="11:15 AM">
+                  <label class="four col" for="1115am">11:15 AM</label>
+                </ng-template>
+              </div>
+
+              <div class="p-1">
+                <span *ngIf="timeSlots.includes(7); else needToBook7">
+                  <span class="unavailable">11:30 AM</span>
+                </span>
+                <ng-template #needToBook7>
+                  <input class="available" type="radio" name="appointmentTime" id="1130am" value="11:30 AM">
+                  <label class="four col" for="1130am">11:30 AM</label>
+                </ng-template>
+              </div>
+
+              <div class="p-1">
+                <span *ngIf="timeSlots.includes(8); else needToBook8">
+                  <span class="unavailable">11:45 AM</span>
+                </span>
+                <ng-template #needToBook8>
+                  <input class="available" type="radio" name="appointmentTime" id="1145am" value="11:45 AM">
+                  <label class="four col" for="1145am">11:45 AM</label>
+                </ng-template>
+              </div>
+            </div>
+
+            <!-- Third set of appointment time -->
+            <div class="d-flex justify-content-start">
+              <div class="p-1">
+                <span *ngIf="timeSlots.includes(9); else needToBook9">
+                  <span class="unavailable">12:00 PM</span>
+                </span>
+                <ng-template #needToBook9>
+                  <input class="available" type="radio" name="appointmentTime" id="1200pm" value="12:00 PM">
+                  <label class="four col" for="1200pm">12:00 PM</label>
+                </ng-template>
+              </div>
+
+              <div class="p-1">
+                <span *ngIf="timeSlots.includes(10); else needToBook10">
+                  <span class="unavailable">12:15 PM</span>
+                </span>
+                <ng-template #needToBook10>
+                  <input class="available" type="radio" name="appointmentTime" id="1215pm" value="12:15 PM">
+                  <label class="four col" for="1215pm">12:15 PM</label>
+                </ng-template>
+              </div>
+
+              <div class="p-1">
+                <span *ngIf="timeSlots.includes(11); else needToBook11">
+                  <span class="unavailable">12:30 PM</span>
+                </span>
+                <ng-template #needToBook11>
+                  <input class="available" type="radio" name="appointmentTime" id="1230pm" value="12:30 PM">
+                  <label class="four col" for="1230pm">12:30 PM</label>
+                </ng-template>
+              </div>
+
+              <div class="p-1">
+                <span *ngIf="timeSlots.includes(12); else needToBook12">
+                  <span class="unavailable">12:45 PM</span>
+                </span>
+                <ng-template #needToBook12>
+                  <input class="available" type="radio" name="appointmentTime" id="1245pm" value="12:45 PM">
+                  <label class="four col" for="1245pm">12:45 PM</label>
+                </ng-template>
+              </div>
+            </div>
+
+            <!-- Four set of appointment time -->
+            <div class="d-flex justify-content-start">
+              <div class="p-1">
+                <span *ngIf="timeSlots.includes(13); else needToBook13">
+                  <span class="unavailable">01:00 PM</span>
+                </span>
+                <ng-template #needToBook13>
+                  <input class="available" type="radio" name="appointmentTime" id="0100pm" value="01:00 PM">
+                  <label class="four col" for="0100pm">01:00 PM</label>
+                </ng-template>
+              </div>
+
+              <div class="p-1">
+                <span *ngIf="timeSlots.includes(14); else needToBook14">
+                  <span class="unavailable">01:15 PM</span>
+                </span>
+                <ng-template #needToBook14>
+                  <input class="available" type="radio" name="appointmentTime" id="0115pm" value="01:15 PM">
+                  <label class="four col" for="0115pm">01:15 PM</label>
+                </ng-template>
+              </div>
+
+              <div class="p-1">
+                <span *ngIf="timeSlots.includes(15); else needToBook15">
+                  <span class="unavailable">01:30 PM</span>
+                </span>
+                <ng-template #needToBook15>
+                  <input class="available" type="radio" name="appointmentTime" id="0130pm" value="01:30 PM">
+                  <label class="four col" for="0130pm">01:30 PM</label>
+                </ng-template>
+              </div>
+
+              <div class="p-1">
+                <span *ngIf="timeSlots.includes(16); else needToBook16">
+                  <span class="unavailable">01:45 PM</span>
+                </span>
+                <ng-template #needToBook16>
+                  <input class="available" type="radio" name="appointmentTime" id="0145pm" value="01:45 PM">
+                  <label class="four col" for="0145pm">01:45 PM</label>
+                </ng-template>
+              </div>
+            </div>
+
+            <!-- Fifth set of appointment time -->
+            <div class="d-flex justify-content-start">
+              <div class="p-1">
+                <span *ngIf="timeSlots.includes(17); else needToBook17">
+                  <span class="unavailable">02:00 PM</span>
+                </span>
+                <ng-template #needToBook17>
+                  <input class="available" type="radio" name="appointmentTime" id="0200pm" value="02:00 PM">
+                  <label class="four col" for="0200pm">02:00 PM</label>
+                </ng-template>
+              </div>
+
+              <div class="p-1">
+                <span *ngIf="timeSlots.includes(18); else needToBook18">
+                  <span class="unavailable">02:15 PM</span>
+                </span>
+                <ng-template #needToBook18>
+                  <input class="available" type="radio" name="appointmentTime" id="0215pm" value="02:15 PM">
+                  <label class="four col" for="0215pm">02:15 PM</label>
+                </ng-template>
+              </div>
+
+              <div class="p-1">
+                <span *ngIf="timeSlots.includes(19); else needToBook19">
+                  <span class="unavailable">02:30 PM</span>
+                </span>
+                <ng-template #needToBook19>
+                  <input class="available" type="radio" name="appointmentTime" id="0230pm" value="02:30 PM">
+                  <label class="four col" for="0230pm">02:30 PM</label>
+                </ng-template>
+              </div>
+
+              <div class="p-1">
+                <span *ngIf="timeSlots.includes(20); else needToBook20">
+                  <span class="unavailable">02:45 PM</span>
+                </span>
+                <ng-template #needToBook20>
+                  <input class="available" type="radio" name="appointmentTime" id="0245pm" value="02:45 PM">
+                  <label class="four col" for="0245pm">02:45 PM</label>
+                </ng-template>
+              </div>
+            </div>
+
+            <!-- Break start -->
+            <div class="strike">
+              <span>Lunch break</span>
+            </div>
+            <!-- Break end -->
+
+            <div *ngIf="currentFormattedDate.getDay() == 0; else nonSundayBook">
+              <p class="sunday-off-message">Sunday second half will remain closed.</p>
+            </div>
+            <ng-template #nonSundayBook>
+            <!-- Sixth set of appointment time -->
+            <div class="d-flex justify-content-start">
+              <div class="p-1">
+                <span *ngIf="timeSlots.includes(21); else needToBook21">
+                  <span class="unavailable">05:00 PM</span>
+                </span>
+                <ng-template #needToBook21>
+                  <input class="available" type="radio" name="appointmentTime" id="0500pm" value="05:00 PM">
+                  <label class="four col" for="0500pm">05:00 PM</label>
+                </ng-template>
+              </div>
+
+              <div class="p-1">
+                <span *ngIf="timeSlots.includes(22); else needToBook22">
+                  <span class="unavailable">05:15 PM</span>
+                </span>
+                <ng-template #needToBook22>
+                  <input class="available" type="radio" name="appointmentTime" id="0515pm" value="05:15 PM">
+                  <label class="four col" for="0515pm">05:15 PM</label>
+                </ng-template>
+              </div>
+
+              <div class="p-1">
+                <span *ngIf="timeSlots.includes(23); else needToBook23">
+                  <span class="unavailable">05:30 PM</span>
+                </span>
+                <ng-template #needToBook23>
+                  <input class="available" type="radio" name="appointmentTime" id="0530pm" value="05:30 PM">
+                  <label class="four col" for="0530pm">05:30 PM</label>
+                </ng-template>
+              </div>
+
+              <div class="p-1">
+                <span *ngIf="timeSlots.includes(24); else needToBook24">
+                  <span class="unavailable">05:45 PM</span>
+                </span>
+                <ng-template #needToBook24>
+                  <input class="available" type="radio" name="appointmentTime" id="0545pm" value="05:45 PM">
+                  <label class="four col" for="0545pm">05:45 PM</label>
+                </ng-template>
+              </div>
+            </div>
+
+            <!-- Seventh set of appointment time -->
+            <div class="d-flex justify-content-start">
+              <div class="p-1">
+                <span *ngIf="timeSlots.includes(25); else needToBook25">
+                  <span class="unavailable">06:00 PM</span>
+                </span>
+                <ng-template #needToBook25>
+                  <input class="available" type="radio" name="appointmentTime" id="0600pm" value="06:00 PM">
+                  <label class="four col" for="0600pm">06:00 PM</label>
+                </ng-template>
+              </div>
+
+              <div class="p-1">
+                <span *ngIf="timeSlots.includes(26); else needToBook26">
+                  <span class="unavailable">06:15 PM</span>
+                </span>
+                <ng-template #needToBook26>
+                  <input class="available" type="radio" name="appointmentTime" id="0615pm" value="06:15 PM">
+                  <label class="four col" for="0615pm">06:15 PM</label>
+                </ng-template>
+              </div>
+
+              <div class="p-1">
+                <span *ngIf="timeSlots.includes(27); else needToBook27">
+                  <span class="unavailable">06:30 PM</span>
+                </span>
+                <ng-template #needToBook27>
+                  <input class="available" type="radio" name="appointmentTime" id="0630pm" value="06:30 PM">
+                  <label class="four col" for="0630pm">06:30 PM</label>
+                </ng-template>
+              </div>
+
+              <div class="p-1">
+                <span *ngIf="timeSlots.includes(28); else needToBook28">
+                  <span class="unavailable">06:45 PM</span>
+                </span>
+                <ng-template #needToBook28>
+                  <input class="available" type="radio" name="appointmentTime" id="0645pm" value="06:45 PM">
+                  <label class="four col" for="0645pm">06:45 PM</label>
+                </ng-template>
+              </div>
+            </div>
+
+            <!-- Eight set of appointment time -->
+            <div class="d-flex justify-content-start">
+              <div class="p-1">
+                <span *ngIf="timeSlots.includes(29); else needToBook29">
+                  <span class="unavailable">07:00 PM</span>
+                </span>
+                <ng-template #needToBook29>
+                  <input class="available" type="radio" name="appointmentTime" id="0700pm" value="07:00 PM">
+                  <label class="four col" for="0700pm">07:00 PM</label>
+                </ng-template>
+              </div>
+
+              <div class="p-1">
+                <span *ngIf="timeSlots.includes(30); else needToBook30">
+                  <span class="unavailable">07:15 PM</span>
+                </span>
+                <ng-template #needToBook30>
+                  <input class="available" type="radio" name="appointmentTime" id="0715pm" value="07:15 PM">
+                  <label class="four col" for="0715pm">07:15 PM</label>
+                </ng-template>
+              </div>
+
+              <div class="p-1">
+                <span *ngIf="timeSlots.includes(31); else needToBook31">
+                  <span class="unavailable">07:30 PM</span>
+                </span>
+                <ng-template #needToBook31>
+                  <input class="available" type="radio" name="appointmentTime" id="0730pm" value="07:30 PM">
+                  <label class="four col" for="0730pm">07:30 PM</label>
+                </ng-template>
+              </div>
+
+              <div class="p-1">
+                <span *ngIf="timeSlots.includes(32); else needToBook32">
+                  <span class="unavailable">07:45 PM</span>
+                </span>
+                <ng-template #needToBook32>
+                  <input class="available" type="radio" name="appointmentTime" id="0745pm" value="07:45 PM">
+                  <label class="four col" for="0745pm">07:45 PM</label>
+                </ng-template>
+              </div>
+            </div>
+
+            <!-- Ninth set of appointment time -->
+            <div class="d-flex justify-content-start">
+              <div class="p-1">
+                <span *ngIf="timeSlots.includes(33); else needToBook33">
+                  <span class="unavailable">08:00 PM</span>
+                </span>
+                <ng-template #needToBook33>
+                  <input class="available" type="radio" name="appointmentTime" id="0800pm" value="08:00 PM">
+                  <label class="four col" for="0800pm">08:00 PM</label>
+                </ng-template>
+              </div>
+
+              <div class="p-1">
+                <span *ngIf="timeSlots.includes(34); else needToBook34">
+                  <span class="unavailable">08:15 PM</span>
+                </span>
+                <ng-template #needToBook34>
+                  <input class="available" type="radio" name="appointmentTime" id="0815pm" value="08:15 PM">
+                  <label class="four col" for="0815pm">08:15 PM</label>
+                </ng-template>
+              </div>
+
+              <div class="p-1">
+                <span *ngIf="timeSlots.includes(35); else needToBook35">
+                  <span class="unavailable">08:30 PM</span>
+                </span>
+                <ng-template #needToBook35>
+                  <input class="available" type="radio" name="appointmentTime" id="0830pm" value="08:30 PM">
+                  <label class="four col" for="0830pm">08:30 PM</label>
+                </ng-template>
+              </div>
+
+              <div class="p-1">
+                <span *ngIf="timeSlots.includes(36); else needToBook36">
+                  <span class="unavailable">08:45 PM</span>
+                </span>
+                <ng-template #needToBook36>
+                  <input class="available" type="radio" name="appointmentTime" id="0845pm" value="08:45 PM">
+                  <label class="four col" for="0845pm">08:45 PM</label>
+                </ng-template>
+              </div>
+            </div>
+          </ng-template>
+          </section>
+        </div>
+        <!-- Appointment slot end -->
+
+        <div class="form-row py-3 px-1">
+          <div class="col-6">
+            <div class="available-slot"></div>
+            <div class="legend-label">available</div>
+          </div>
+          <div class="col-6">
+            <div class="unavailable-slot"></div>
+            <div class="legend-label">Booked</div>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-6">
+        <div class="form-group m-0" [class.has-error]="firstName.invalid && firstName.touched"
+          [class.has-success]="firstName.valid">
+          <mat-form-field>
+            <input matInput type="text" placeholder="Name" required #firstName="ngModel" id="firstName" name="firstName"
+              [(ngModel)]="appointment.firstName">
+            <mat-error class="help-block" *ngIf="firstName.invalid && firstName.touched">This field is required!
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group m-0" [class.has-error]="address.invalid && address.touched"
+          [class.has-success]="address.valid">
+          <mat-form-field>
+            <textarea matInput type="text" #address maxlength="100" placeholder="Postal Address" required
+              #address="ngModel" id="address" name="address" [(ngModel)]="appointment.address"></textarea>
+            <mat-hint align="end">{{address.value.length}} / 100</mat-hint>
+            <mat-error class="help-block" *ngIf="address.invalid && address.touched">This field is required!
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group m-0" [class.has-error]="city.invalid && city.touched" [class.has-success]="city.valid">
+          <mat-form-field>
+            <input matInput type="text" placeholder="City" required #city="ngModel" id="city" name="city"
+              [(ngModel)]="appointment.city">
+            <mat-error class="help-block" *ngIf="city.invalid && city.touched">This field is required!
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <mat-form-field>
+          <mat-select class="display-top" placeholder="Choose state" required #state="ngModel" id="state" name="state"
+            [(ngModel)]="appointment.state">
+            <!-- <mat-option>--</mat-option> -->
+            <mat-option *ngFor="let state of states" [value]="state">
+              {{state.name}}
+            </mat-option>
+          </mat-select>
+          <mat-error class="help-block" *ngIf="state.invalid && state.touched">This field is required!
+          </mat-error>
+        </mat-form-field>
+
+        <div class="form-group m-0" [class.has-error]="mobile.invalid && mobile.touched"
+          [class.has-success]="mobile.valid">
+          <mat-form-field>
+            <span matPrefix>+91 &nbsp;</span>
+            <input matInput type="tel" maxlength="10" required pattern="^\d{10}$" placeholder="Mobile Number"
+              #mobile="ngModel" id="mobile" name="mobile" [(ngModel)]="appointment.mobile">
+            <mat-error class="help-block" *ngIf="mobile.errors?.required && mobile.touched">This field is required!
+            </mat-error>
+            <mat-error class="help-block" *ngIf="mobile.errors?.pattern && mobile.touched">Enter valid mobile number
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-group m-0">
+          <mat-form-field>
+            <input matInput type="text" placeholder="Email" #email="ngModel" id="email" name="email"
+              [(ngModel)]="appointment.email">
+          </mat-form-field>
+        </div>
+        <!-- <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field> -->
+
+        <!-- <div class="form-group" [class.has-error]="time.invalid && time.touched" [class.has-success]="time.valid">
+          <mat-form-field>
+            <mat-select class="display-top" placeholder="Time" required #time="ngModel" id="time" name="time"
+              [(ngModel)]="appointment.time"> -->
+        <!-- <mat-option>--</mat-option> -->
+        <!-- <mat-option *ngFor="let time of times" [value]="time">
+                {{time.slot}}
+              </mat-option>
+            </mat-select>
+            <mat-error class="help-block" *ngIf="time.invalid && time.touched">This field is required!
+            </mat-error>
+          </mat-form-field>
+        </div> -->
+      </div>
+    </div>
+    <span class="form-group">
+      <mat-card-actions>
+        <div class="row justify-button-space pt-4">
+          <button type="submit" class="btn btn-success big-button mar-right" [disabled]="appointmentForm.invalid">Add
+            Appointment</button>
+          <button type="button" class="btn btn-dark" (click)="decline()">Cancel</button>
+        </div>
+      </mat-card-actions>
+    </span>
+  </form>
+</div>

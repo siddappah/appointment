@@ -1,0 +1,33 @@
+/* Styles for the active tab label */
+.mat-tab-label.mat-tab-label-active {
+    min-width: 25px !important;
+    padding: 5px;
+    background-color: blue;
+    color: #fff;
+    font-weight: 700;
+}
+
+/* Styles for the ink bar */
+.mat-ink-bar {
+    color: #fff;
+}
+/* .mat-tab-group .mat-tab-header {
+    background-color: #ab2653;
+} */
+.mat-tab-group .mat-tab-label {
+    font-weight: 700;
+}
+th.mat-header-cell, td.mat-cell{
+    border: 1px solid rgba(0,0,0,.12);
+}
+th.mat-header-cell, .mat-cell {
+    text-align: center !important;
+}
+th.mat-header-cell{
+    font-size: 14px;
+    background: #3c33719c;
+    color: #fff;
+} 
+.adjust-filter-size {
+    width: 20%;
+}
